@@ -14,16 +14,16 @@ certmanger.delete:
 
 certmanger.create-issuer:
 	@echo "run first 'export EMAIL=email@mydomain.com'"
-	@cat cert-manager-cluster-issuer.yaml | envsubst | kubectl apply -f -
+	@cat cert-manager-cluster-issuer.yaml | envsubst | kubectl --kubeconfig $(shell k3d kubeconfig write default) apply -f -
 
 certmanger.delete-issuer:
 	@echo "run first 'export EMAIL=email@mydomain.com'"
-	@cat cert-manager-cluster-issuer.yaml | envsubst | kubectl delete -f -
+	@cat cert-manager-cluster-issuer.yaml | envsubst | kubectl --kubeconfig $(shell k3d kubeconfig write default) delete -f -
 
 test.deploy:
 	@echo "run first 'export DOMAIN=mydomain.com'"
-	@cat test-app.yaml | envsubst | kubectl apply -f -
+	@cat test-app.yaml | envsubst | kubectl --kubeconfig $(shell k3d kubeconfig write default) apply -f -
 
 test.delete:
 	@echo "run first 'export DOMAIN=mydomain.com'"
-	@cat test-app.yaml | envsubst | kubectl delete -f -
+	@cat test-app.yaml | envsubst | kubectl --kubeconfig $(shell k3d kubeconfig write default) delete -f -
