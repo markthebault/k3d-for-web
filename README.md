@@ -23,5 +23,6 @@ make certmanger.create-issuer
 
 
 #OPTIONAL:
+#deploy a NGINX as test application
 make test.deploy
 ```
